@@ -1,0 +1,52 @@
+# Autofilled by tools/new_project_layout/probe_disc.py from your legal dump.
+# Review before shipping. Runtime quirks / overlay seeds still need hand work.
+
+[game]
+name = "Quake II"
+id = "SLUS-00757"
+region = "USA"
+players = 4
+exe = "disc/SLUS_007.57"
+load_address = "0x80018000"
+entry_pc = "0x800861A4"
+text_size = "0x0009B000"
+stack_base = "0x801FFFF0"
+
+# Digests are for data Track 01 (first BINARY FILE / TRACK 01).
+[prepare_disc]
+out_dir = "disc"
+bin_name = "Quake II (USA) (Track 1).bin"
+cue_name = "Quake II (USA).cue"
+boot_exe = "SLUS_007.57"
+known_sizes = [323642256]
+known_md5 = [
+  "ca6eb702916d24f928a265bbaca00235",
+]
+known_sha1 = [
+  "f936e7cc477b0daf456c86eff86acc82e7f549ce",
+]
+
+[recompiler]
+seeds = "seeds/ghidra_funcs.txt"
+out_dir = "generated"
+strict = true
+
+[runtime]
+window_title = "Quake II Recompiled"
+memcard_dir = "saves"
+bios_hle = false
+openbios = false
+
+[video]
+renderer = "opengl"
+aspect_ratio = "4:3"
+
+[controller]
+default_mode = "digital"
+
+# Online mount gate: digests + track count + optional TOC fingerprint
+# (see docs/NETPLAY.md).
+[netplay]
+require_cue = true
+required_tracks = 2
+required_disc_fp = "d3863b796fd18d20191744e807e3b4b65661f0001bd837ab329b253c3fcd6c17"
